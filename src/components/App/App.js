@@ -1,7 +1,10 @@
+import React from 'react';
+import SearchBar from '../SearchBar';
+
 const App = () => {
     return (
         <div data-id="app">
-            Hello, world!
+            <SearchBar />
         </div>
     )
 }
