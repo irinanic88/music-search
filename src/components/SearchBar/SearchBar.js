@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-    Box,
     IconButton,
     FormControl,
     InputAdornment,
@@ -23,7 +22,7 @@ const SearchBar = () => {
     }
 
     return(
-        <Box>
+        <div data-id="search-bar">
             <FormControl fullWidth variant="outlined">
                 <InputLabel htmlFor="search-music">Search music</InputLabel>
                 <OutlinedInput
@@ -45,7 +44,7 @@ const SearchBar = () => {
                     label="Search music"
                 />
             </FormControl>
-        </Box>
+        </div>
     )
 }
 
