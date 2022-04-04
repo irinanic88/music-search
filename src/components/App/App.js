@@ -1,8 +1,8 @@
 const App = () => {
     return (
-        <h1>
+        <div data-id="app">
             Hello, world!
-        </h1>
+        </div>
     )
 }
 
