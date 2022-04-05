@@ -1,3 +1,5 @@
 export const urlEncode = (string) => {
-    return string.split(' ').join('+');
+    const encodedURL = encodeURIComponent(string);
+    const finalURL = encodedURL.replaceAll('%20', '+');
+    return finalURL;
 }
