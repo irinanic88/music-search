@@ -3,27 +3,30 @@ import { useSelector } from 'react-redux';
 import { albumsSelector } from '../../store/selectors';
 import SearchBar from '../SearchBar';
 import Album from '../Album';
+import { Grid } from '@material-ui/core';
 
 const App = () => {
     const albums = useSelector(albumsSelector);
 
-    console.log(albums);
-
     return (
         <div data-id="app">
             <SearchBar />
-            {
-                albums.map(album => {
-                    const { collectionId, artistName, collectionName, artworkUrl100 } = album;
-                    return (
-                        <Album key={collectionId}
-                               artistName={artistName}
-                               albumName={collectionName}
-                               artwork={artworkUrl100}
-                        />
-                    )
-                })
-            }
+            <Grid container>
+                {
+                    albums.map(album => {
+                        const { collectionId, artistName, collectionName, artworkUrl100 } = album;
+                        return (
+                            <Grid item xs={3} key={collectionId}>
+                                <Album artistName={artistName}
+                                       albumName={collectionName}
+                                       artwork={artworkUrl100}
+                                />
+                            </Grid>
+                        )
+                    })
+                }
+            </Grid>
+
         </div>
     )
 }
