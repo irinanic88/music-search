@@ -21,32 +21,35 @@ const SearchBar = () => {
         setSearchValue(newValue.toString());
     }
 
-    const handleFormSubmit = () => {
+    const handleFormSubmit = (event) => {
+        event.preventDefault();
         dispatch(loadAlbums(urlEncode(searchValue)));
     }
 
     return(
         <Box>
-            <FormControl fullWidth variant="outlined">
-                <InputLabel htmlFor="search-music">Search music</InputLabel>
-                <OutlinedInput
-                    id="search-music"
-                    value={searchValue}
-                    onChange={handleInputChange}
-                    endAdornment={
-                        <InputAdornment position="end">
-                            <IconButton
-                                aria-label="submit-search"
-                                onClick={handleFormSubmit}
-                                edge="end"
-                            >
-                                <SearchIcon />
-                            </IconButton>
-                        </InputAdornment>
-                    }
-                    label="Search music"
-                />
-            </FormControl>
+            <form onSubmit={handleFormSubmit}>
+                <FormControl fullWidth variant="outlined">
+                    <InputLabel htmlFor="search-music">Search music</InputLabel>
+                    <OutlinedInput
+                        id="search-music"
+                        value={searchValue}
+                        onChange={handleInputChange}
+                        endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="submit-search"
+                                    onClick={handleFormSubmit}
+                                    edge="end"
+                                >
+                                    <SearchIcon />
+                                </IconButton>
+                            </InputAdornment>
+                        }
+                        label="Search music"
+                    />
+                </FormControl>
+            </form>
         </Box>
     )
 }
