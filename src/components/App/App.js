@@ -17,7 +17,7 @@ const App = () => {
                   sx={{
                       mt: 5,
                   }}
-                  rowSpacing={3} alignItems="stretch" justifyContent="space-between">
+                  rowSpacing={3} alignItems="stretch" justifyContent="center">
                 {
                     albums.map(album => {
                         const { collectionId, artistName, collectionName, artworkUrl100 } = album;
