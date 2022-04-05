@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { albumsSelector } from '../../store/selectors';
 import SearchBar from '../SearchBar';
 
 const App = () => {
+    const albums = useSelector(albumsSelector);
+
+    console.log(albums);
+
     return (
         <div data-id="app">
             <SearchBar />

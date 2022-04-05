@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { loadAlbums } from '../../store/actions';
 import {
     IconButton,
     FormControl,
@@ -9,16 +11,16 @@ import {
 import SearchIcon from '@mui/icons-material/Search';
 
 const SearchBar = () => {
-    const [stringToSearch, setStringToSearch] = useState('');
+    const dispatch = useDispatch();
+    const [searchValue, setSearchValue] = useState('');
 
     const handleInputChange = (event) => {
         const newValue = event.target.value;
-        setStringToSearch(newValue);
+        setSearchValue(newValue.toString());
     }
 
-    const handleFormSubmit = (event) => {
-        event.preventDefault();
-        console.log(event);
+    const handleFormSubmit = () => {
+        dispatch(loadAlbums(searchValue));
     }
 
     return(
@@ -27,14 +29,13 @@ const SearchBar = () => {
                 <InputLabel htmlFor="search-music">Search music</InputLabel>
                 <OutlinedInput
                     id="search-music"
-                    value={stringToSearch}
+                    value={searchValue}
                     onChange={handleInputChange}
                     endAdornment={
                         <InputAdornment position="end">
                             <IconButton
-                                aria-label="search-button"
+                                aria-label="submit-search"
                                 onClick={handleFormSubmit}
-                                onMouseDown={handleFormSubmit}
                                 edge="end"
                             >
                                 <SearchIcon />
