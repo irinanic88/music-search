@@ -3,12 +3,13 @@ import { useDispatch } from 'react-redux';
 import { loadAlbums } from '../../store/actions';
 import { urlEncode } from '../../utils/utils';
 import {
+    Box,
     IconButton,
     FormControl,
     InputAdornment,
     InputLabel,
     OutlinedInput
-} from '@material-ui/core';
+} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 const SearchBar = () => {
@@ -25,7 +26,7 @@ const SearchBar = () => {
     }
 
     return(
-        <div data-id="search-bar">
+        <Box>
             <FormControl fullWidth variant="outlined">
                 <InputLabel htmlFor="search-music">Search music</InputLabel>
                 <OutlinedInput
@@ -46,7 +47,7 @@ const SearchBar = () => {
                     label="Search music"
                 />
             </FormControl>
-        </div>
+        </Box>
     )
 }
 
