@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loadAlbums } from '../../store/actions';
+import { urlEncode } from '../../utils/utils';
 import {
     IconButton,
     FormControl,
@@ -20,7 +21,7 @@ const SearchBar = () => {
     }
 
     const handleFormSubmit = () => {
-        dispatch(loadAlbums(searchValue));
+        dispatch(loadAlbums(urlEncode(searchValue)));
     }
 
     return(
