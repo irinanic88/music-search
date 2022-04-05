@@ -4,8 +4,8 @@ const albumsReducer = (state = [], action) => {
 
     switch (action.type) {
         case `${LOAD_ALBUMS}__${SUCCESS}`:
-            const { resultCount, results } = action.data;
-            return [...state, ...results];
+            const { results } = action.data;
+            return [...results];
 
         default:
             return state;
