@@ -16,7 +16,7 @@ const App = () => {
                     albums.map(album => {
                         const { collectionId, artistName, collectionName, artworkUrl100 } = album;
                         return (
-                            <Grid item xs={3} key={collectionId}>
+                            <Grid item xs={12} sm={6} md={4} lg={3} key={collectionId}>
                                 <Album artistName={artistName}
                                        albumName={collectionName}
                                        artwork={artworkUrl100}
