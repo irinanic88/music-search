@@ -36,7 +36,6 @@ const SearchBar = () => {
                             <IconButton
                                 aria-label="submit-search"
                                 onClick={handleFormSubmit}
-                                onMouseDown={handleFormSubmit}
                                 edge="end"
                             >
                                 <SearchIcon />
