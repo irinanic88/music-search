@@ -1,4 +1,4 @@
-import { LOAD_ALBUMS, REQUEST, SUCCESS, FAILURE } from './actionTypes';
+import { LOAD_ALBUMS, REQUEST, SUCCESS, FAILURE, SET_CURRENT_VIEW } from './actionTypes';
 import { URL } from '../utils/variables';
 
 export const loadAlbums = (searchString) => async (dispatch) => {
@@ -21,7 +21,11 @@ export const loadAlbums = (searchString) => async (dispatch) => {
             error,
         });
     }
-
 };
+
+export const setCurrentView = (view) => ({
+    type: SET_CURRENT_VIEW,
+    view,
+});
 
 

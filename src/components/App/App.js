@@ -1,13 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import { useSelector } from 'react-redux';
 import { pageSize } from '../../utils/variables';
-import { albumsSelector } from '../../store/selectors';
+import { albumsSelector, currentAlbumsViewSelector } from '../../store/selectors';
 import SearchBar from '../SearchBar';
 import Album from '../Album';
+import SwitchView from '../SwitchView';
 import { Container, Grid, Button } from '@mui/material';
 
 const App = () => {
     const albums = useSelector(albumsSelector);
+    const currentView = useSelector(currentAlbumsViewSelector);
+    const displayGridItem = (columnNumber) => {
+        return currentView === 'list' ? 12 : columnNumber;
+    }
 
     const [currentPage, setCurrentPage] = useState(1);
     const [showMore, setShowMore] = useState(false);
@@ -27,20 +32,29 @@ const App = () => {
             mt: 5,
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center'
+            alignItems: 'center',
+            gap: 3
         }}>
             <SearchBar />
+            {
+                albums.length > 0 && <SwitchView />
+            }
             <Grid container
-                  sx={{
-                      mt: 5,
-                  }}
-                  rowSpacing={3} alignItems="stretch" justifyContent="center">
+                  rowSpacing={2}
+                  columnSpacing={3}
+                  alignItems="stretch"
+            >
                 {
                     visibleAlbums.map(album => {
                         const { collectionId, artistName, collectionName, artworkUrl100 } = album;
 
                         return (
-                            <Grid item xs={12} sm={6} md={4} lg={3} key={collectionId}>
+                            <Grid item
+                                  xs={12}
+                                  sm={displayGridItem(6)}
+                                  md={displayGridItem(4)}
+                                  lg={displayGridItem(3)}
+                                  key={collectionId}>
                                 <Album artistName={artistName}
                                        albumName={collectionName}
                                        artwork={artworkUrl100}
