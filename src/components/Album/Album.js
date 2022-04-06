@@ -4,9 +4,11 @@ import { Card, CardActionArea, CardMedia, CardContent, Typography } from '@mui/m
 const Album = ({artwork, artistName, albumName}) => {
     return(
         <Card sx={{
-            maxWidth: 250,
+            height: '100%'
         }}>
-            <CardActionArea>
+            <CardActionArea sx={{
+                height: '100%'
+            }}>
                 <CardMedia
                     component="img"
                     height="200"
@@ -14,7 +16,10 @@ const Album = ({artwork, artistName, albumName}) => {
                     image={artwork}
                     alt={`${albumName} cover`}
                 />
-                <CardContent>
+                <CardContent sx={{
+                    height: '100%',
+
+                }}>
                     <Typography gutterBottom variant="h6" component="div">
                         {albumName}
                     </Typography>
