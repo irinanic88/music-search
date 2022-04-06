@@ -27,7 +27,9 @@ const SearchBar = () => {
     }
 
     return(
-        <Box>
+        <Box sx={{
+            alignSelf: 'stretch'
+        }}>
             <form onSubmit={handleFormSubmit}>
                 <FormControl fullWidth variant="outlined">
                     <InputLabel htmlFor="search-music">Search music</InputLabel>

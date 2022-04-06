@@ -1,16 +1,33 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { useSelector } from 'react-redux';
+import { pageSize } from '../../utils/variables';
 import { albumsSelector } from '../../store/selectors';
 import SearchBar from '../SearchBar';
 import Album from '../Album';
-import {Container, Grid } from '@mui/material';
+import { Container, Grid, Button } from '@mui/material';
 
 const App = () => {
     const albums = useSelector(albumsSelector);
 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [showMore, setShowMore] = useState(false);
+
+    const visibleAlbums = albums.slice(0, currentPage*pageSize);
+
+    useEffect(() => {
+        albums.length > 0 && visibleAlbums.length < albums.length ? setShowMore(true) : setShowMore(false);
+    }, [visibleAlbums]);
+
+    const handleShowMoreClick = () => {
+        setCurrentPage(currentPage + 1);
+    }
+
     return (
         <Container sx={{
             mt: 5,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
         }}>
             <SearchBar />
             <Grid container
@@ -19,7 +36,7 @@ const App = () => {
                   }}
                   rowSpacing={3} alignItems="stretch" justifyContent="center">
                 {
-                    albums.map(album => {
+                    visibleAlbums.map(album => {
                         const { collectionId, artistName, collectionName, artworkUrl100 } = album;
 
                         return (
@@ -33,7 +50,14 @@ const App = () => {
                     })
                 }
             </Grid>
-
+            {   showMore &&
+            <Button sx={{
+                my: 7
+            }} variant='outlined' onClick={handleShowMoreClick}
+            >
+                Show more
+            </Button>
+            }
         </Container>
     )
 }
