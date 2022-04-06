@@ -1,13 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import { useSelector } from 'react-redux';
 import { pageSize } from '../../utils/variables';
-import { albumsSelector } from '../../store/selectors';
+import { albumsSelector, currentAlbumsViewSelector } from '../../store/selectors';
 import SearchBar from '../SearchBar';
 import Album from '../Album';
+import SwitchView from '../SwitchView';
 import { Container, Grid, Button } from '@mui/material';
 
 const App = () => {
     const albums = useSelector(albumsSelector);
+    const currentView = useSelector(currentAlbumsViewSelector);
 
     const [currentPage, setCurrentPage] = useState(1);
     const [showMore, setShowMore] = useState(false);
@@ -27,13 +29,14 @@ const App = () => {
             mt: 5,
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center'
+            alignItems: 'center',
+            gap: 3
         }}>
             <SearchBar />
+            {
+                albums.length > 0 && <SwitchView />
+            }
             <Grid container
-                  sx={{
-                      mt: 5,
-                  }}
                   rowSpacing={5}
                   columnSpacing={3}
                   alignItems="stretch">
