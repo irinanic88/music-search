@@ -10,6 +10,9 @@ import { Container, Grid, Button } from '@mui/material';
 const App = () => {
     const albums = useSelector(albumsSelector);
     const currentView = useSelector(currentAlbumsViewSelector);
+    const displayGridItem = (columnNumber) => {
+        return currentView === 'list' ? 12 : columnNumber;
+    }
 
     const [currentPage, setCurrentPage] = useState(1);
     const [showMore, setShowMore] = useState(false);
@@ -37,15 +40,21 @@ const App = () => {
                 albums.length > 0 && <SwitchView />
             }
             <Grid container
-                  rowSpacing={5}
+                  rowSpacing={2}
                   columnSpacing={3}
-                  alignItems="stretch">
+                  alignItems="stretch"
+            >
                 {
                     visibleAlbums.map(album => {
                         const { collectionId, artistName, collectionName, artworkUrl100 } = album;
 
                         return (
-                            <Grid item xs={12} sm={6} md={4} lg={3} key={collectionId}>
+                            <Grid item
+                                  xs={12}
+                                  sm={displayGridItem(6)}
+                                  md={displayGridItem(4)}
+                                  lg={displayGridItem(3)}
+                                  key={collectionId}>
                                 <Album artistName={artistName}
                                        albumName={collectionName}
                                        artwork={artworkUrl100}
